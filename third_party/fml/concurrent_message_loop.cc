@@ -2,12 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "flutter/fml/concurrent_message_loop.h"
+#include "fml/concurrent_message_loop.h"
 
 #include <algorithm>
 
-#include "flutter/fml/thread.h"
-#include "flutter/fml/trace_event.h"
+#include "fml/thread.h"
 
 namespace fml {
 
@@ -100,7 +99,6 @@ void ConcurrentMessageLoop::WorkerMain() {
     // themselves try to post more tasks to the message loop.
     lock.unlock();
 
-    TRACE_EVENT0("flutter", "ConcurrentWorkerWake");
     // Execute the primary task we woke up for.
     if (task) {
       task();

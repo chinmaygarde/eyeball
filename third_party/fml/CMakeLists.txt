@@ -1,152 +1,164 @@
 add_library(fml
-  wakeable.h
-  size.h
+  ascii_trie.cc
+  ascii_trie.h
+  base32.cc
+  base32.h
   build_config.h
-  icu_util.h
-  native_library.h
-  shared_thread_merger.h
-  endianness.h
-  status.h
+  closure.h
+  command_line.cc
   command_line.h
-  memory/weak_ptr.h
-  memory/ref_ptr.h
-  memory/weak_ptr_internal.h
-  memory/task_runner_checker.h
-  memory/ref_counted_internal.h
-  memory/ref_ptr_internal.h
+  compiler_specific.h
+  concurrent_message_loop.cc
+  concurrent_message_loop.h
+  container.h
+  delayed_task.cc
+  delayed_task.h
+  eintr_wrapper.h
+  endianness.cc
+  endianness.h
+  file.cc
+  file.h
+  hash_combine.h
+  hex_codec.cc
+  hex_codec.h
+  log_level.h
+  log_settings.cc
+  log_settings.h
+  log_settings_state.cc
+  logging.cc
+  logging.h
+  macros.h
+  make_copyable.h
+  mapping.cc
+  mapping.h
+  math.h
   memory/ref_counted.h
+  memory/ref_counted_internal.h
+  memory/ref_ptr.h
+  memory/ref_ptr_internal.h
+  memory/task_runner_checker.cc
+  memory/task_runner_checker.h
   memory/thread_checker.h
+  memory/weak_ptr.h
+  memory/weak_ptr_internal.cc
+  memory/weak_ptr_internal.h
+  message_loop.cc
   message_loop.h
+  message_loop_impl.cc
+  message_loop_impl.h
+  message_loop_task_queues.cc
+  message_loop_task_queues.h
+  native_library.h
+  paths.cc
+  paths.h
+  posix_wrappers.h
+  raster_thread_merger.cc
+  raster_thread_merger.h
+  shared_thread_merger.cc
+  shared_thread_merger.h
+  size.h
+  status.h
+  string_conversion.cc
+  string_conversion.h
+  synchronization/atomic_object.h
+  synchronization/count_down_latch.cc
+  synchronization/count_down_latch.h
+  synchronization/semaphore.cc
   synchronization/semaphore.h
   synchronization/shared_mutex.h
-  synchronization/atomic_object.h
-  synchronization/sync_switch.h
+  synchronization/shared_mutex_std.cc
   synchronization/shared_mutex_std.h
+  synchronization/sync_switch.cc
+  synchronization/sync_switch.h
+  synchronization/waitable_event.cc
   synchronization/waitable_event.h
-  synchronization/count_down_latch.h
-  backtrace.h
-  thread_local.h
-  delayed_task.h
-  dart/dart_converter.h
-  hash_combine.h
-  container.h
-  mapping.h
-  file.h
-  platform/posix/shared_mutex_posix.h
-  platform/win/errors_win.h
-  platform/win/wstring_conversion.h
-  platform/win/message_loop_win.h
-  platform/fuchsia/task_observers.h
-  platform/fuchsia/message_loop_fuchsia.h
-  platform/linux/message_loop_linux.h
-  platform/linux/timerfd.h
-  platform/android/message_loop_android.h
-  platform/android/jni_util.h
-  platform/android/jni_weak_ref.h
-  platform/android/paths_android.h
-  platform/android/scoped_java_ref.h
-  platform/darwin/platform_version.h
-  platform/darwin/string_range_sanitization.h
-  platform/darwin/scoped_nsobject.h
-  platform/darwin/cf_utils.h
-  platform/darwin/message_loop_darwin.h
-  platform/darwin/scoped_block.h
   task_queue_id.h
-  trace_event.h
-  logging.h
-  hex_codec.h
+  task_runner.cc
+  task_runner.h
+  task_source.cc
   task_source.h
   task_source_grade.h
-  eintr_wrapper.h
+  thread.cc
+  thread.h
+  thread_local.cc
+  thread_local.h
+  time/chrono_timestamp_provider.cc
   time/chrono_timestamp_provider.h
+  time/time_delta.h
+  time/time_point.cc
   time/time_point.h
   time/timestamp_provider.h
-  time/time_delta.h
-  base32.h
-  ascii_trie.h
-  make_copyable.h
-  task_runner.h
-  thread.h
-  log_level.h
-  macros.h
-  paths.h
-  message_loop_impl.h
-  log_settings.h
-  unique_object.h
-  raster_thread_merger.h
-  math.h
-  posix_wrappers.h
-  closure.h
-  string_conversion.h
-  compiler_specific.h
-  message_loop_task_queues.h
-  concurrent_message_loop.h
-  unique_fd.h
-  base32.cc
-  shared_thread_merger.cc
-  hex_codec.cc
-  mapping.cc
-  message_loop_impl.cc
-  log_settings_state.cc
-  trace_event.cc
-  backtrace.cc
-  memory/task_runner_checker.cc
-  memory/weak_ptr_internal.cc
-  synchronization/count_down_latch.cc
-  synchronization/sync_switch.cc
-  synchronization/waitable_event.cc
-  synchronization/shared_mutex_std.cc
-  synchronization/semaphore.cc
-  log_settings.cc
-  string_conversion.cc
-  message_loop.cc
-  file.cc
-  dart/dart_converter.cc
-  endianness.cc
-  task_source.cc
-  platform/posix/mapping_posix.cc
-  platform/posix/file_posix.cc
-  platform/posix/native_library_posix.cc
-  platform/posix/paths_posix.cc
-  platform/posix/shared_mutex_posix.cc
-  platform/posix/command_line_posix.cc
-  platform/posix/posix_wrappers_posix.cc
-  platform/win/mapping_win.cc
-  platform/win/file_win.cc
-  platform/win/native_library_win.cc
-  platform/win/paths_win.cc
-  platform/win/errors_win.cc
-  platform/win/message_loop_win.cc
-  platform/win/posix_wrappers_win.cc
-  platform/win/command_line_win.cc
-  platform/win/wstring_conversion.cc
-  platform/fuchsia/paths_fuchsia.cc
-  platform/fuchsia/message_loop_fuchsia.cc
-  platform/fuchsia/task_observers.cc
-  platform/linux/paths_linux.cc
-  platform/linux/message_loop_linux.cc
-  platform/linux/timerfd.cc
-  platform/android/scoped_java_ref.cc
-  platform/android/jni_util.cc
-  platform/android/message_loop_android.cc
-  platform/android/paths_android.cc
-  platform/android/jni_weak_ref.cc
-  platform/darwin/cf_utils.cc
-  concurrent_message_loop.cc
   unique_fd.cc
-  message_loop_task_queues_benchmark.cc
-  message_loop_task_queues.cc
-  time/time_point.cc
-  time/chrono_timestamp_provider.cc
-  delayed_task.cc
-  raster_thread_merger.cc
-  command_line.cc
-  backtrace_stub.cc
-  icu_util.cc
-  task_runner.cc
-  logging.cc
-  ascii_trie.cc
-  paths.cc
-  thread.cc
-  thread_local.cc
+  unique_fd.h
+  unique_object.h
+  wakeable.h
+)
+
+if(APPLE)
+  target_sources(fml
+    PUBLIC
+      platform/darwin/cf_utils.cc
+      platform/darwin/cf_utils.h
+      platform/darwin/message_loop_darwin.h
+      platform/darwin/message_loop_darwin.mm
+      platform/darwin/paths_darwin.mm
+      platform/darwin/platform_version.h
+      platform/darwin/platform_version.mm
+      platform/darwin/scoped_block.h
+      platform/darwin/scoped_block.mm
+      platform/darwin/scoped_nsobject.h
+      platform/darwin/scoped_nsobject.mm
+      platform/darwin/string_range_sanitization.h
+      platform/darwin/string_range_sanitization.mm
+  )
+elseif(UNIX)
+  target_sources(fml
+    PUBLIC
+      platform/linux/message_loop_linux.cc
+      platform/linux/message_loop_linux.h
+      platform/linux/paths_linux.cc
+      platform/linux/timerfd.cc
+      platform/linux/timerfd.h
+  )
+elseif(WIN32)
+  target_sources(fml
+    PUBLIC
+      platform/win/command_line_win.cc
+      platform/win/errors_win.cc
+      platform/win/errors_win.h
+      platform/win/file_win.cc
+      platform/win/mapping_win.cc
+      platform/win/message_loop_win.cc
+      platform/win/message_loop_win.h
+      platform/win/native_library_win.cc
+      platform/win/paths_win.cc
+      platform/win/posix_wrappers_win.cc
+      platform/win/wstring_conversion.cc
+      platform/win/wstring_conversion.h
+  )
+endif()
+
+if(UNIX)
+  target_sources(fml
+    PUBLIC
+      platform/posix/command_line_posix.cc
+      platform/posix/file_posix.cc
+      platform/posix/mapping_posix.cc
+      platform/posix/native_library_posix.cc
+      platform/posix/paths_posix.cc
+      platform/posix/posix_wrappers_posix.cc
+      platform/posix/shared_mutex_posix.cc
+      platform/posix/shared_mutex_posix.h
+  )
+endif()
+
+if(APPLE)
+  target_link_libraries(fml
+    "-framework Foundation"
+  )
+endif()
+
+target_include_directories(fml
+  PUBLIC
+  ..
 )

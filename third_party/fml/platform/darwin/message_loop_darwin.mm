@@ -2,18 +2,19 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "flutter/fml/platform/darwin/message_loop_darwin.h"
+#include "fml/platform/darwin/message_loop_darwin.h"
 
 #include <CoreFoundation/CFRunLoop.h>
 #include <Foundation/Foundation.h>
 
-#include "flutter/fml/logging.h"
+#include "fml/logging.h"
 
 namespace fml {
 
 static constexpr CFTimeInterval kDistantFuture = 1.0e10;
 
-CFStringRef MessageLoopDarwin::kMessageLoopCFRunLoopMode = CFSTR("fmlMessageLoop");
+CFStringRef MessageLoopDarwin::kMessageLoopCFRunLoopMode =
+    CFSTR("fmlMessageLoop");
 
 MessageLoopDarwin::MessageLoopDarwin()
     : running_(false), loop_((CFRunLoopRef)CFRetain(CFRunLoopGetCurrent())) {
@@ -23,12 +24,12 @@ MessageLoopDarwin::MessageLoopDarwin()
   CFRunLoopTimerContext timer_context = {
       .info = this,
   };
-  delayed_wake_timer_.Reset(
-      CFRunLoopTimerCreate(kCFAllocatorDefault, kDistantFuture /* fire date */,
-                           HUGE_VAL /* interval */, 0 /* flags */, 0 /* order */,
-                           reinterpret_cast<CFRunLoopTimerCallBack>(&MessageLoopDarwin::OnTimerFire)
-                           /* callout */,
-                           &timer_context /* context */));
+  delayed_wake_timer_.Reset(CFRunLoopTimerCreate(
+      kCFAllocatorDefault, kDistantFuture /* fire date */,
+      HUGE_VAL /* interval */, 0 /* flags */, 0 /* order */,
+      reinterpret_cast<CFRunLoopTimerCallBack>(&MessageLoopDarwin::OnTimerFire)
+      /* callout */,
+      &timer_context /* context */));
   FML_DCHECK(delayed_wake_timer_ != nullptr);
   CFRunLoopAddTimer(loop_, delayed_wake_timer_, kCFRunLoopCommonModes);
   // This mode will be used by FlutterKeyboardManager.
@@ -48,7 +49,8 @@ void MessageLoopDarwin::Run() {
 
   while (running_) {
     @autoreleasepool {
-      int result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, kDistantFuture, YES);
+      int result =
+          CFRunLoopRunInMode(kCFRunLoopDefaultMode, kDistantFuture, YES);
       if (result == kCFRunLoopRunStopped || result == kCFRunLoopRunFinished) {
         // This handles the case where the loop is terminated using
         // CoreFoundation APIs.
@@ -76,10 +78,12 @@ void MessageLoopDarwin::WakeUp(fml::TimePoint time_point) {
   // different and must be accounted for.
   CFRunLoopTimerSetNextFireDate(
       delayed_wake_timer_,
-      CFAbsoluteTimeGetCurrent() + (time_point - fml::TimePoint::Now()).ToSecondsF());
+      CFAbsoluteTimeGetCurrent() +
+          (time_point - fml::TimePoint::Now()).ToSecondsF());
 }
 
-void MessageLoopDarwin::OnTimerFire(CFRunLoopTimerRef timer, MessageLoopDarwin* loop) {
+void MessageLoopDarwin::OnTimerFire(CFRunLoopTimerRef timer,
+                                    MessageLoopDarwin* loop) {
   @autoreleasepool {
     // RunExpiredTasksNow rearms the timer as appropriate via a call to WakeUp.
     loop->RunExpiredTasksNow();

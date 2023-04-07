@@ -6,9 +6,9 @@
 #include <cstring>
 #include <iostream>
 
-#include "flutter/fml/build_config.h"
-#include "flutter/fml/log_settings.h"
-#include "flutter/fml/logging.h"
+#include "fml/build_config.h"
+#include "fml/log_settings.h"
+#include "fml/logging.h"
 
 #if defined(FML_OS_ANDROID)
 #include <android/log.h>

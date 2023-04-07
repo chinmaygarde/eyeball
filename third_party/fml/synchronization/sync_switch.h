@@ -9,8 +9,8 @@
 #include <functional>
 #include <memory>
 
-#include "flutter/fml/macros.h"
-#include "flutter/fml/synchronization/shared_mutex.h"
+#include "fml/macros.h"
+#include "fml/synchronization/shared_mutex.h"
 
 namespace fml {
 

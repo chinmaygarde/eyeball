@@ -2,13 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "flutter/fml/thread_local.h"
+#include "fml/thread_local.h"
 
 #if FML_THREAD_LOCAL_PTHREADS
 
 #include <cstring>
 
-#include "flutter/fml/logging.h"
+#include "fml/logging.h"
 
 namespace fml {
 namespace internal {

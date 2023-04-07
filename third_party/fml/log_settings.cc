@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "flutter/fml/log_settings.h"
+#include "fml/log_settings.h"
 
 #include <fcntl.h>
 
@@ -11,8 +11,8 @@
 #include <iostream>
 #include <limits>
 
-#include "flutter/fml/build_config.h"
-#include "flutter/fml/logging.h"
+#include "fml/build_config.h"
+#include "fml/logging.h"
 
 #if defined(OS_FUCHSIA)
 #include <lib/syslog/global.h>

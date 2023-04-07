@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "flutter/fml/platform/darwin/string_range_sanitization.h"
+#include "fml/platform/darwin/string_range_sanitization.h"
 
 namespace fml {
 
@@ -20,7 +20,8 @@ NSRange RangeForCharactersInRange(NSString* text, NSRange range) {
   if (text == nil || range.location + range.length > text.length) {
     return NSMakeRange(NSNotFound, 0);
   }
-  NSRange sanitizedRange = [text rangeOfComposedCharacterSequencesForRange:range];
+  NSRange sanitizedRange =
+      [text rangeOfComposedCharacterSequencesForRange:range];
   // We don't want to override the length, we just want to make sure we don't
   // select into the middle of a multi-byte character. Taking the
   // `sanitizedRange`'s length will end up altering the actual selection.

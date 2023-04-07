@@ -42,10 +42,7 @@ target_compile_definitions(eyeball
     -D_CRT_SECURE_NO_WARNINGS
 )
 
-target_link_libraries(eyeball
-  PUBLIC
-    third_party/fml
-)
+target_link_libraries(eyeball fml)
 
 target_include_directories(eyeball
   PUBLIC
