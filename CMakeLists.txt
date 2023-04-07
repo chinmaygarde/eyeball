@@ -24,8 +24,10 @@ add_subdirectory(third_party/googlebenchmark)
 include(GoogleTest)
 
 add_library(eyeball
-  src/image.h
+  src/geom.cc
+  src/geom.h
   src/image.cc
+  src/image.h
 )
 
 target_compile_options(eyeball

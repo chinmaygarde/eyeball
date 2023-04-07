@@ -4,6 +4,7 @@
 
 #include "fml/macros.h"
 #include "fml/mapping.h"
+#include "geom.h"
 
 namespace eyeball {
 
@@ -13,7 +14,15 @@ class Image {
 
   ~Image();
 
+  bool IsValid() const;
+
+  UISize GetSize() const;
+
  private:
+  bool is_valid_ = false;
+  UISize size_;
+  std::shared_ptr<fml::Mapping> decompressed_image_;
+
   FML_DISALLOW_COPY_AND_ASSIGN(Image);
 };
 

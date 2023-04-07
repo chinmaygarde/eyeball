@@ -1,7 +1,7 @@
 {
   "build_systems": [
     {
-      "name": "Eyeball This for Me Build All",
+      "name": "Eyeball Build All",
       "shell_cmd": "ninja && ./eyeball_unittests --gtest_filter=\"*\"",
       "working_dir": "${project_path}/build",
       "file_regex": "(.*):(\\d+):(\\d+)(.*)",
@@ -11,7 +11,7 @@
   "folders": [
     {
       "path": ".",
-      "name": "Eyeball This For Me",
+      "name": "Eyeball",
     }
   ],
   "settings":
