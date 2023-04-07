@@ -1,0 +1,3 @@
+#pragma once
+
+#cmakedefine EYEBALL_ASSETS_LOCATION "@EYEBALL_ASSETS_LOCATION@" "/"

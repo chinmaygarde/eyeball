@@ -1,0 +1,33 @@
+{
+  "build_systems": [
+    {
+      "name": "Eyeball This for Me Build All",
+      "shell_cmd": "ninja && ./eyeball_unittests --gtest_filter=\"*\"",
+      "working_dir": "${project_path}/build",
+      "file_regex": "(.*):(\\d+):(\\d+)(.*)",
+      "shell": true,
+    }
+  ],
+  "folders": [
+    {
+      "path": ".",
+      "name": "Eyeball This For Me",
+    }
+  ],
+  "settings":
+  {
+    "LSP":
+    {
+      "clangd":
+      {
+        "initializationOptions" : {
+          "binary": "system",
+          "clangd.compile-commands-dir": "build",
+          "clangd.background-index": true,
+          "clangd.header-insertion": "never",
+          "clangd.clang-tidy": true,
+        }
+      },
+    },
+  },
+}
