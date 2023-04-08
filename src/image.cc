@@ -47,4 +47,25 @@ UISize Image::GetSize() const {
   return size_;
 }
 
+using TileCallback = std::function<bool(const UIRect& window)>;
+void Image::IterateTiles(UISize tile_size, TileCallback tile_cb) const {
+  if (!tile_cb) {
+    return;
+  }
+  if (tile_size.IsEmpty()) {
+    return;
+  }
+  for (size_t y = 0u; y < size_.height; y += tile_size.height) {
+    for (size_t x = 0u; x < size_.width; x += tile_size.width) {
+      UIPoint origin(x, y);
+      UISize size(std::min(size_.width, x + tile_size.width) - x,   //
+                  std::min(size_.height, y + tile_size.height) - y  //
+      );
+      if (!tile_cb({origin, size})) {
+        return;
+      }
+    }
+  }
+}
+
 }  // namespace eyeball

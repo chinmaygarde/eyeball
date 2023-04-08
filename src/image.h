@@ -18,6 +18,9 @@ class Image {
 
   UISize GetSize() const;
 
+  using TileCallback = std::function<bool(const UIRect& window)>;
+  void IterateTiles(UISize tile_size, TileCallback tile_cb) const;
+
  private:
   bool is_valid_ = false;
   UISize size_;
